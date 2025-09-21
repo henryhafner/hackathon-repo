@@ -3,33 +3,31 @@ import { GoogleMap, useJsApiLoader, Marker, InfoWindow } from '@react-google-map
 
 const defaultCenter = { lat: 29.7604, lng: -95.3698 };
 const containerStyle = { width: '100%', height: '80vh' };
-const libraries = ['places']; // Required to use the Places API
+const libraries = ['places'];
 
 function MyMapComponent() {
-  // State for the user's search query, the list of places, and the selected place for the InfoWindow.
+  // State for the user's search query, the list of places, and the selected place for the InfoWindow
   const [query, setQuery] = useState('');
   const [zipCode, setZipCode] = useState('');
   const [places, setPlaces] = useState([]);
   const [selectedPlace, setSelectedPlace] = useState(null);
   const [loading, setLoading] = useState(false);
 
-  // Use a ref to store the map instance.
   const mapRef = useRef(null);
 
-  // Load the Google Maps API script using the custom hook.
-  // We'll use the environment variable to securely access the API key.
+  // Load the Google Maps API script using the custom hook
   const { isLoaded, loadError } = useJsApiLoader({
     id: 'google-map-script',
     googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
     libraries,
   });
 
-  // This function is called when the map loads.
+  // Function called when the map loads
   const onMapLoad = useCallback((map) => {
     mapRef.current = map;
   }, []);
 
-  // This function handles the search when the user submits the form.
+  // Function handles the search when the user submits the form
   const handleSearch = (event) => {
     event.preventDefault();
     
@@ -76,18 +74,18 @@ function MyMapComponent() {
   }
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 p-4 font-sans antialiased">
-      <div className="w-full max-w-4xl bg-white rounded-xl shadow-lg p-6">
-        <h1 className="text-4xl font-bold text-gray-800 text-center mb-6">
-          Find Places with Gemini
+    <div className="flex flex-col items-center justify-center min-h-screen bg-black p-4 font-sans antialiased space-x-6">
+     
+        <h1 className="md:text-7xl sm:text-6xl text-4xl font-bold md:py-6">
+          Here To Help You With Zero Charge!
         </h1>
         <form onSubmit={handleSearch} className="flex flex-col sm:flex-row gap-4 mb-6">
           <input
             type="text"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
-            placeholder="Search for coffee shops, parks, restaurants..."
-            className="flex-1 p-3 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            placeholder="Search for resources"
+            className="w-full p-3 rounded-md border border-[#00df0f] focus:outline-none focus:ring-2 focus:ring-[#00df0f]"
             style={{color: 'black'}}
           />
           <input
@@ -95,18 +93,17 @@ function MyMapComponent() {
             value={zipCode}
             onChange={(e) => setZipCode(e.target.value)}
             placeholder="Enter your zipcode"
-            className="flex-3 p-3 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="flex-1 p-3 rounded-md border border-[#00df0f] focus:outline-none focus:ring-2 focus:ring-[#00df0f]"
             style={{color: 'black'}}
           />
             
           <button
             type="submit"
-            className="bg-blue-600 text-white font-semibold py-3 px-6 rounded-md shadow-md hover:bg-blue-700 transition duration-300"
+            className="bg-[#00df0f] text-black font-semibold px-6 py-2 rounded hover:bg-green-600 transition"
           >
             {loading ? 'Searching...' : 'Search'}
           </button>
         </form>
-      </div>
 
       <div className="w-full max-w-4xl mt-6">
         {isLoaded ? (

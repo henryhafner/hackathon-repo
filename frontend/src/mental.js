@@ -29,15 +29,15 @@ function MentalResources() {
   if (loading) return <p>Loading...</p>;
 
   return (
-            <div class='text-white'>
-            <title>
-                Mental Resources
-            </title>
-            <h1 class='text-left' style={{fontSize: '28px' ,paddingLeft: '50px', display: 'flex'}}>
-                <span style={{position: "absolute", left: '42%'}}>Mental Wellness</span>
-            </h1>
-            <hr style={{border: 'none', height: '5px', backgroundColor: '#A92CE8'}}></hr>
-            <ul style={{textAlign: 'center'}}>
+    <div class='text-white'>
+      <title>
+        Mental Resources
+      </title>
+      <h1 className="text-center text-[28px] font-bold py-4">
+        Wellness
+      </h1>
+      <hr style={{ border: 'none', height: '5px', backgroundColor: '#00df0f' }}></hr>
+      <ul style={{ textAlign: 'center' }}>
         {resources.map((r) => (
           <li key={r.id} style={{ margin: "0.5rem 0" }}>
             <p style={{ fontWeight: "600" }}>{r.name}</p>
@@ -46,12 +46,12 @@ function MentalResources() {
             {r.website && (
               <><a href={formatLink(r.website)} target="_blank" rel="noopener noreferrer">
                 Visit Website
-              </a><hr style={{border: 'none', height: '3px', backgroundColor: '#A92CE8'}}></hr></>
+              </a><hr style={{ border: 'none', height: '3px', backgroundColor: '#00df0f' }}></hr></>
             )}
           </li>
         ))}
       </ul>
-        </div>
+    </div>
   );
 }
 

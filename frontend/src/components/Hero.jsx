@@ -1,12 +1,8 @@
 // src/components/Hero.jsx
 
 import { useNavigate } from 'react-router-dom';
-import React, { useState, useRef, useCallback } from 'react';
-import { GoogleMap, useJsApiLoader, Marker, InfoWindow } from '@react-google-maps/api';
+import React, { useState } from 'react';
 
-const defaultCenter = { lat: 29.7604, lng: -95.3698 };
-const containerStyle = { width: '100%', height: '80vh' };
-const libraries = ['places'];
 
 const Hero = () => {
   const [query, setQuery] = useState('');

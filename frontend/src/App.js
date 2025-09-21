@@ -3,8 +3,7 @@ import './App.css';
 import './index.css';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
-import Maps from './components/maps';          // <-- import 
-import Results from './components/Results';    // <-- create this file
+import Results from './components/Results';  
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Food from './food';
 import Safety from './safety';
@@ -16,7 +15,6 @@ import MyMapComponent from './MyMapComponent';
 function Home() {                              // homepage comp
   return (
     <>
-      <Hero />
       <MyMapComponent />
     </>
   );
