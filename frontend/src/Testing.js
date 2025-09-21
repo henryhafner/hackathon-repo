@@ -12,7 +12,7 @@ function Testing() {
             }
         )
     }, [])
-     if (!backendData) {
+    if (!backendData) {
         return <p>Loading...</p>;
     }
 

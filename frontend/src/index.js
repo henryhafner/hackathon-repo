@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
-import Testing from './Testing';
+import MyMapComponent from './MyMapComponent';
 import reportWebVitals from './reportWebVitals';
 import Safety from './safety';
 import Food from './food';
