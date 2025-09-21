@@ -9,12 +9,12 @@ const formatLink = (url) => {
   return `https://${url}`;
 };
 
-function ShelterResources() {
+function MentalResources() {
   const [resources, setResources] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch("http://localhost:5000/shelter")
+    fetch("http://localhost:5000/mental")
       .then((res) => res.json())
       .then((data) => {
         setResources(data);
@@ -31,10 +31,10 @@ function ShelterResources() {
   return (
             <div class='text-white'>
             <title>
-                Shelter Resources
+                Mental Resources
             </title>
             <h1 class='text-left' style={{fontSize: '28px' ,paddingLeft: '50px', display: 'flex'}}>
-                <a href='App.js'>NextDoorHub</a> <span style={{position: "absolute", left: '46%'}}>Shelter</span>
+                <a href='App.js'>NextDoorHub</a> <span style={{position: "absolute", left: '42%'}}>Mental Wellness</span>
             </h1>
             <hr style={{border: 'none', height: '5px', backgroundColor: '#A92CE8'}}></hr>
             <ul style={{textAlign: 'center'}}>
@@ -55,4 +55,4 @@ function ShelterResources() {
   );
 }
 
-export default ShelterResources;
+export default MentalResources;
