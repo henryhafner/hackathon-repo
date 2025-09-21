@@ -1,14 +1,29 @@
-import logo from './logo.svg';
+// src/App.js
 import './App.css';
-import Navbar from './components/Navbar';
 import './index.css';
+import Navbar from './components/Navbar';
+import Hero from './components/Hero';
+import Maps from './components/maps';          // <-- import 
+import Results from './components/Results';    // <-- create this file
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
-function App() {
-return (
-    <div>
-      <Navbar />
-    </div>
+function Home() {                              // homepage comp
+  return (
+    <>
+      <Hero />
+      <Maps />
+    </>
   );
 }
 
-export default App;
+export default function App() {
+  return (
+    <BrowserRouter>
+      <Navbar />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/results" element={<Results />} />
+      </Routes>
+    </BrowserRouter>
+  );
+}
