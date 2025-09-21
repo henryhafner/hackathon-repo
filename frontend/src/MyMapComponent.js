@@ -8,6 +8,7 @@ const libraries = ['places']; // Required to use the Places API
 function MyMapComponent() {
   // State for the user's search query, the list of places, and the selected place for the InfoWindow.
   const [query, setQuery] = useState('');
+  const [zipCode, setZipCode] = useState('');
   const [places, setPlaces] = useState([]);
   const [selectedPlace, setSelectedPlace] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -43,9 +44,11 @@ function MyMapComponent() {
 
     const placesService = new window.google.maps.places.PlacesService(mapRef.current);
     
+    const fullQuery = `${query} in ${zipCode}`;
+
     const request = {
-      query: query,
-      fields: ['name', 'geometry', 'place_id', 'generativeSummary', 'formatted_address'],
+      query: fullQuery,
+      fields: ['name', 'geometry', 'place_id', 'formatted_address'],
     };
 
     placesService.textSearch(request, (results, status) => {
@@ -84,8 +87,18 @@ function MyMapComponent() {
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             placeholder="Search for coffee shops, parks, restaurants..."
-            className="color to-black flex-1 p-3 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="flex-1 p-3 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            style={{color: 'black'}}
           />
+          <input
+            type="text"
+            value={zipCode}
+            onChange={(e) => setZipCode(e.target.value)}
+            placeholder="Enter your zipcode"
+            className="flex-3 p-3 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            style={{color: 'black'}}
+          />
+            
           <button
             type="submit"
             className="bg-blue-600 text-white font-semibold py-3 px-6 rounded-md shadow-md hover:bg-blue-700 transition duration-300"
@@ -117,11 +130,9 @@ function MyMapComponent() {
                 onCloseClick={() => setSelectedPlace(null)}
               >
                 <div className="p-2 max-w-sm">
-                  <h2 className="text-lg font-bold">{selectedPlace.name}</h2>
+                  <h2 className="text-lg font-bold" style={{color: 'black'}}>{selectedPlace.name}</h2>
                   <p className="text-gray-700">{selectedPlace.formatted_address}</p>
                   <div className="mt-2 text-sm text-gray-600">
-                    <h3 className="font-semibold mb-1">AI Summary (via Gemini):</h3>
-                    <p>{selectedPlace.generativeSummary?.text || 'No summary available.'}</p>
                   </div>
                 </div>
               </InfoWindow>
@@ -138,54 +149,3 @@ function MyMapComponent() {
 }
 
 export default MyMapComponent;
-
-
-
-
-// import React, { useState, useCallback } from 'react';
-// import { GoogleMap, useJsApiLoader, Marker } from '@react-google-maps/api';
-
-// const containerStyle = {
-//   width: '100%',
-//   height: '400px'
-// };
-
-// const libraries = ["places"];
-
-// function MyMapComponent({ center, places }) {
-//   const { isLoaded } = useJsApiLoader({
-//     googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
-//     libraries,
-//   });
-
-//   const [map, setMap] = useState(null);
-
-//   const onLoad = useCallback(function callback(map) {
-//     const bounds = new window.google.maps.LatLngBounds(center);
-//     map.fitBounds(bounds);
-//     setMap(map);
-//   }, [center]);
-
-//   const onUnmount = useCallback(function callback(map) {
-//     setMap(null);
-//   }, []);
-
-//     return isLoaded ? (
-//       <GoogleMap
-//         // ... (map props)
-//       >
-//         {/* Only call .map() if places exists and is an array */}
-//         {places && places.map((place) => (
-//           <Marker
-//             key={place.place_id}
-//             position={{
-//               lat: place.geometry.location.lat(),
-//               lng: place.geometry.location.lng(),
-//             }}
-//           />
-//         ))}
-//       </GoogleMap>
-//   ) : <></>;
-// }
-
-// export default MyMapComponent;
