@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import { AiOutlineClose, AiOutlineMenu } from 'react-icons/ai';
+import { Link } from "react-router-dom";
 // If you use react-router later, swap <button> for <Link>.
 
 const navItems = [
   { label: 'Food', to: '/food' },
   { label: 'Wellness', to: '/Wellness' },
   { label: 'Housing', to: '/housing' },
-  { label: 'Jobs', to: '/jobs' },
-  { label: 'Clothing', to: '/clothing' },
+  { label: 'Safety', to: '/safety' },
   { label: 'Education', to: '/education' },
 ];
 
@@ -23,15 +23,20 @@ const Navbar = () => {
 
   return (
     <div className="flex justify-between items-center h-24 max-w-[1240px] mx-auto px-4 text-white">
-      <h1 className="w-full text-3xl font-bold text-[#00df0f]">NextDoorHub</h1>
+         <Link to="/" className="px-4 py-2 rounded hover:bg-green-600 transition">
+          <h1 className="w-full text-3xl font-bold text-[#00df0f]">NextDoorHub</h1></Link>
 
       {/* Desktop buttons */}
       <ul className="hidden md:flex items-center gap-3">
         {navItems.map((item) => (
           <li key={item.label}>
-            <button type="button" className={btnTab}>
+           {/* // <button type="button" className={btnTab}>
               {item.label}
-            </button>
+            </button> */}
+            <Link to={item.to} className="px-4 py-2 rounded hover:bg-green-600 transition">
+        {item.label}
+      </Link>
+
           </li>
         ))}
       </ul>

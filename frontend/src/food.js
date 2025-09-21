@@ -34,7 +34,7 @@ function FoodResources() {
                 Food Resources
             </title>
             <h1 class='text-left' style={{fontSize: '28px' ,paddingLeft: '50px', display: 'flex'}}>
-                <a href='App.js'>NextDoorHub</a> <span style={{position: "absolute", left: '47%'}}>Food</span>
+                 <span style={{position: "absolute", left: '47%'}}>Food</span>
             </h1>
             <hr style={{border: 'none', height: '5px', backgroundColor: '#A92CE8'}}></hr>
             <ul style={{textAlign: 'center'}}>
